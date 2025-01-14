@@ -1,4 +1,6 @@
 
+using RecordShop.Service;
+
 namespace RecordShop
 /*TASKS
     Store information about the records they have in stock.
@@ -27,6 +29,7 @@ namespace RecordShop
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<AlbumService>();
 
             var app = builder.Build();
 
