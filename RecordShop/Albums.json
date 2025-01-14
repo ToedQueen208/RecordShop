@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "albumName": "Fallen Kingdom",
+    "artistName": "Aviators",
+    "Songs": [
+      "Burn",
+      "The Fallen Kingdom"
+    ]
+
+  },
+  {
+    "id": 2,
+    "albumName": "Godhunter",
+    "artistName": "Aviators",
+    "Songs": [
+      "Godhunter",
+      "Castle on the sea"
+    ]
+
+  }
+]

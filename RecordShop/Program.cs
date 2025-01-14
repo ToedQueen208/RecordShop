@@ -1,4 +1,5 @@
 
+using RecordShop.Model;
 using RecordShop.Service;
 
 namespace RecordShop
@@ -30,7 +31,7 @@ namespace RecordShop
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<AlbumService>();
-
+            builder.Services.AddScoped<AlbumModel>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
