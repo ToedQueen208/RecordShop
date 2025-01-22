@@ -1,26 +1,66 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
 using System.Text.Json;
 
 namespace RecordShop.Model
 {
     public class AlbumModel
     {
-        public List<Album> albumList = new List<Album>();
+        private static List<Album> albumList = new List<Album>();
 
-
-        public static List<Album> GetAlbumList()
+        private RecordShopDbContext db;
+        public  AlbumModel(RecordShopDbContext dbContext)
         {
-          return JsonSerializer.Deserialize<List<Album>>(File.ReadAllText("Albums.json"));
+
+            db = dbContext; 
         }
-        public IEnumerable<Album> FindAlbums()
+
+
+        public List<Album> GetAlbumList()
         {
-            if (albumList.IsNullOrEmpty())
+            return db.Albums.ToList();
+        }
+        //public IEnumerable<Album> FindAlbums()
+        //{
+        //    if (albumList.IsNullOrEmpty())
+        //    {
+        //        albumList = GetAlbumList();
+              
+               
+        //    }
+        //    return albumList;
+        //}
+
+        public Album GetAlbum(int id) 
+        {
+
+
+            albumList = GetAlbumList();
+            var album = albumList.Find(x => x.id == id);
+            if (album != null)
             {
-                albumList = GetAlbumList();
-                Console.WriteLine("Creating new list");
+                return album;
             }
-            return albumList;
+            {
+                return null;
+            }
+        }
+
+        public Album AddAlbum(Album album)
+        {
+                       db.Albums.Add(album);
+            db.SaveChanges();
+            Console.WriteLine("Created album");
+            return album;
+            /*
+            album.id = FindAlbums().Last().id + 1;
+
+            albumList.Add(album);
+
+            return albumList.Find(x=>x.id == album.id);
+            */
         }
     }
 }

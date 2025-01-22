@@ -2,10 +2,10 @@
 {
     public class Album
     {
-        private readonly int id;
-        private string albumName { get; set; }
-        private string artistName { get; set; }
-        public List<string> songs { get; set; } 
+        public  int id { get; set; }
+        public string albumName { get; set; }
+        public string artistName { get; set; }
+        public List<string> Songs { get; set; } 
 
     }
 }

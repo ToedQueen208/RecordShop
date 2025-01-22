@@ -1,4 +1,5 @@
 
+using Microsoft.EntityFrameworkCore;
 using RecordShop.Model;
 using RecordShop.Service;
 
@@ -23,7 +24,7 @@ namespace RecordShop
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -32,6 +33,9 @@ namespace RecordShop
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<AlbumService>();
             builder.Services.AddScoped<AlbumModel>();
+
+            builder.Services.AddDbContext<RecordShopDbContext>(option => option.UseSqlServer(connectionString));
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
