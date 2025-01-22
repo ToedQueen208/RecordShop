@@ -43,5 +43,38 @@ namespace RecordShop.Service
         
         
         }
+
+        public bool DeleteAlbum(Album album, out Album result)
+        {
+            List<Album> albums = _albumModel.GetAlbumList();
+            if (albums.Find(x => x.albumName == album.albumName) != null)
+            {
+                Console.Write("Removing album");
+                result = album;
+                _albumModel.RemoveAlbum(album);
+                return true;
+            }
+            else
+            {
+                result = null;
+                return false;
+            }
+        }
+
+        public bool UpdateAlbum(Album album, out Album result)
+        {
+            List<Album> albums = _albumModel.GetAlbumList();
+            if (albums.Find(x => x.albumName == album.albumName) != null)
+            {
+                Console.Write("Updating album");
+                result = _albumModel.UpdateAlbum(album);
+                return true;
+            }
+            else
+            {
+                result = null;
+                return false;
+            }
+        }
     }
 }

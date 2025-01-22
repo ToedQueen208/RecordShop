@@ -54,6 +54,32 @@ namespace RecordShop.Controllers
 
             return BadRequest("The data you entered was incorrect");
         }
+        [HttpPut]
+        [Route("UpdateAlbum")]
+
+        public IActionResult UpdateAlbum(Album album)
+        {
+            if (_albumService.UpdateAlbum(album, out Album result))
+            {
+
+                return Created($"The Album has been updated to the Shop with the ID of " + result.id.ToString(), result);
+            }
+
+            return BadRequest("The data you entered was incorrect");
+        }
+
+        [HttpDelete]
+        [Route("DeleteAlbum")]
+        public IActionResult DeleteAlbum(Album album)
+        {
+            if (_albumService.DeleteAlbum(album, out Album result))
+            {
+
+                return Created($"The Album has been updated to the Shop with the ID of " + result.id.ToString(), result);
+            }
+
+            return BadRequest("The data you entered was incorrect");
+        }
         /*
         ENDPOINTS
 
